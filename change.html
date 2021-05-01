@@ -1,0 +1,52 @@
+<HTML>
+<H1>Auction fliping 101</h1>
+<p id="text"> </p>
+
+<script>
+var a= 0;
+var page = 1;
+var pages;
+var Items = ["cow","sheep"];
+
+
+	fetch("https://api.hypixel.net/skyblock/auctions?page=".concat(page))
+		.then(result => result.json())
+		.then(d => {
+		pages = d.totalPages;	
+		
+	for (var a = 0; a < pages; a++) {
+fetch("https://api.hypixel.net/skyblock/auctions?page=".concat(a))
+		.then(result => result.json())
+		.then(data => {
+		console.log(data.auctions);
+		
+			var auc = data.auctions;
+			var i = 0;
+			var lines = "";
+			while(i<5000){
+					
+					try {
+						console.log(auc[i].item_name);
+								if(auc[i].starting_bid>250000){
+										var currentAuc = data.auctions[i];
+										
+									    Items.push(currentAuc.item_name.concat(":",currentAuc.starting_bid,"   ",i,"</p><p>"));
+										}
+										var i=i+1;
+										}
+								
+		catch(err) {
+				var i=99999;
+}}
+		
+    })
+	}console.log(Items);
+			document.getElementById("text").innerHTML = Items;
+			console.log(pages);
+})
+
+
+
+</script>
+
+</HTML>
